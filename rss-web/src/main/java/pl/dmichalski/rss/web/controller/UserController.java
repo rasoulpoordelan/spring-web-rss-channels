@@ -4,10 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 import pl.dmichalski.rss.core.entity.RssFeedEntity;
 import pl.dmichalski.rss.core.service.IRssFeedService;
 import pl.dmichalski.rss.core.service.IUserService;
@@ -55,6 +52,17 @@ public class UserController {
         RssFeedEntity rssFeedEntity = blogService.findOne(id);
         blogService.delete(rssFeedEntity);
         return "redirect:/account";
-    }
 
+    }
+    @RequestMapping(value = "reset")
+    @ResponseBody
+    public String refresh() {
+
+        RssFeedEntity ff=new RssFeedEntity();
+        ff.setId((long)3);
+        ff.setName("salam");
+        ff.setUrl("http://www.javaworld.com/index.rss");
+        blogService.saveAll(ff);
+       return "hello blog";
+    }
 }

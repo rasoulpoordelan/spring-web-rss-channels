@@ -68,6 +68,7 @@ public class RssFeedService implements IRssFeedService {
 
     @Scheduled(cron = "${pl.dmichalski.rss.core.service.scheduleCron}")
     public void reloadChannels() {
+
         blogRepository.findAll().stream().forEach(this::saveAll);
     }
 

@@ -27,5 +27,4 @@ public class RssFeedItemService implements IRssFeedItemService {
         PageRequest pageRequest = new PageRequest(0, 10, Sort.Direction.DESC, "publishedDate");
         return itemRepository.findAll(pageRequest).getContent();
     }
-
 }
